@@ -1,0 +1,27 @@
+header {
+    background: black;
+    color: white;
+    text-align: center;
+}
+
+body {
+    background: #3d3d3d;
+}
+
+#buttons{
+    background: #790097;
+    min-height: 1px;
+}
+
+#gif-space {
+    background: #1d006b;
+    color: #E2FF94;
+}
+
+form {
+    padding: 5px;
+}
+
+.gifButton {
+    margin: 5px;
+}
