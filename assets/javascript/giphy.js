@@ -39,3 +39,5 @@ $(document).ready( function() {
 //api URL: "https://api.giphy.com/v1/gifs/search?q=" + searchTerm + "&api_key=OBz62G0QMIkfMedRwBTJ62a7gIqb8Tsm&limit:15&rating:g"
 
 //build logic to prepend results to $("#gif-space")
+
+//build pause/play logic for gifs
