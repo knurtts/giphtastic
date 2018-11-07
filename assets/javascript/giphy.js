@@ -1,19 +1,19 @@
 var buttons = ["dark souls", "Cthulhu", "super sayan", "whoa", "mic drop", "yay", "high five"];
 
-$(document).ready( function() {
+$(document).ready(function () {
 
     $("#addNew").focus();
 
     for (let i = 0; i < buttons.length; i++) {
         var newButton = $("<button>");
-        newButton.attr("class", "gifButton");
+        newButton.addClass("gifButton");
         newButton.attr("type", "button");
         newButton.attr("value", buttons[i])
         newButton.text(buttons[i]);
         $("#buttons").append(newButton);
     }
-
-    $("#add").click(function() {
+    
+    $("#add").click(function () {
         event.preventDefault();
 
         if ($("#addNew").val() == "") {
@@ -21,23 +21,74 @@ $(document).ready( function() {
         } else {
             var button = $("<button>");
             var buttonName = $("#addNew").val();
-            button.attr("class", "gifButton");
+            button.addClass("gifButton");
             button.attr("type", "button");
             button.attr("value", buttonName);
             button.text(buttonName);
             $("#buttons").append(button);
             $("#addNew").val("");
         }
+        $(".gifButton").click(function () 
+        {
+            var searchTerm = $(this).val();
+            var url = "https://api.giphy.com/v1/gifs/search?q=" + searchTerm + "&api_key=OBz62G0QMIkfMedRwBTJ62a7gIqb8Tsm&limit=15&rating=g";
+            console.log(searchTerm);
+    
+            $.ajax({
+                url: url,
+                method: "GET",
+            }).done(function (result) {
+                console.log(result);
+                for (let i = 0; i < result.data.length; i++) {
+    
+                    newGif = $("<img>");
+                    newGif.addClass("gif");
+                    newGif.attr("src", result.data[i].images.fixed_height_still.url);
+                    newGif.attr("data-still", result.data[i].images.fixed_height_still.url);
+                    newGif.attr("data-animate", result.data[i].images.fixed_height.url);
+    
+                    $("#gif-space").prepend(newGif);
+    
+                };
+
+            });
+
+        });
 
     });
 
+    $(".gifButton").click(function () {
+        var searchTerm = $(this).val();
+        var url = "https://api.giphy.com/v1/gifs/search?q=" + searchTerm + "&api_key=OBz62G0QMIkfMedRwBTJ62a7gIqb8Tsm&limit=15&rating=g";
+        console.log(searchTerm);
+
+        $.ajax({
+            url: url,
+            method: "GET",
+        }).done(function (result) {
+            console.log(result);
+            for (let i = 0; i < result.data.length; i++) {
+
+                newGif = $("<img>");
+                newGif.addClass("gif");
+                newGif.attr("src", result.data[i].images.fixed_height_still.url);
+                newGif.attr("data-still", result.data[i].images.fixed_height_still.url);
+                newGif.attr("data-animate", result.data[i].images.fixed_height.url);
+
+                $("#gif-space").prepend(newGif);
+
+            };
+
+        });
+
+    });
+
+    $(".gif").on("click", function () {
+        console.log("click");
+    });
+    
 });
 
-//make onclick event to trigger search for clicked button
-
-//add ajax logic to pull json from giphy
-//api URL: "https://api.giphy.com/v1/gifs/search?q=" + searchTerm + "&api_key=OBz62G0QMIkfMedRwBTJ62a7gIqb8Tsm&limit:15&rating:g"
-
-//build logic to prepend results to $("#gif-space")
+//build working click listener for all gifs
 
 //build pause/play logic for gifs
