@@ -50,6 +50,7 @@ $(document).on("click", ".gifButton", function () {
             newGif.attr("src", result.data[i].images.fixed_height_still.url);
             newGif.attr("data-still", result.data[i].images.fixed_height_still.url);
             newGif.attr("data-animate", result.data[i].images.fixed_height.url);
+            newGif.attr("data-state", "still");
 
             $("#gif-space").prepend(newGif);
 
@@ -61,4 +62,15 @@ $(document).on("click", ".gifButton", function () {
 
 $(document).on("click", ".gif", function () {
 //build pause/play logic for gifs
+    var state = $(this).attr("data-state");
+    console.log(state);
+
+    if (state == "still") {
+        $(this).attr("src", $(this).attr("data-animate"));
+        $(this).attr("data-state", "animate");  
+      } else if (state == "animate") {
+        $(this).attr("src", $(this).attr("data-still"));
+        $(this).attr("data-state", "still");
+      }
+    
 });
