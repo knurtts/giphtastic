@@ -1,4 +1,5 @@
 var buttons = ["dark souls", "Cthulhu", "super sayan", "whoa", "mic drop", "yay", "high five"];
+var groupNumber = 0;
 
 $(document).ready(function () {
 
@@ -35,7 +36,7 @@ $(document).ready(function () {
 
 $(document).on("click", ".gifButton", function () {
     var searchTerm = $(this).val();
-    var url = "https://api.giphy.com/v1/gifs/search?q=" + searchTerm + "&api_key=OBz62G0QMIkfMedRwBTJ62a7gIqb8Tsm&limit=15&rating=g";
+    var url = "https://api.giphy.com/v1/gifs/search?q=" + searchTerm + "&api_key=OBz62G0QMIkfMedRwBTJ62a7gIqb8Tsm&limit=4&rating=pg-13";
     console.log(searchTerm);
 
     $.ajax({
@@ -43,25 +44,41 @@ $(document).on("click", ".gifButton", function () {
         method: "GET",
     }).done(function (result) {
         console.log(result);
+
+        cardGroup = $("<div>");
+        cardGroup.addClass("card-group");
+        cardGroup.attr("id", "group" + groupNumber);
+        $("#gif-space").prepend(cardGroup);
+
         for (let i = 0; i < result.data.length; i++) {
+ 
+
+            cardDiv = $("<div>");
+            cardDiv.addClass("card col-md-3");
 
             newGif = $("<img>");
-            newGif.addClass("gif");
+            newGif.addClass("gif card-img-top");
             newGif.attr("src", result.data[i].images.fixed_height_still.url);
             newGif.attr("data-still", result.data[i].images.fixed_height_still.url);
             newGif.attr("data-animate", result.data[i].images.fixed_height.url);
             newGif.attr("data-state", "still");
 
-            $("#gif-space").prepend(newGif);
+            newP = $("<p>");
+            newP.addClass("card-text");
+            newP.html("Rating: " + result.data[i].rating);
+
+            cardDiv.html(newGif);
+            cardDiv.append(newP);
+            $("#group"+groupNumber).prepend(cardDiv);
+
 
         };
-
+        groupNumber++;
     });
 
 });
 
 $(document).on("click", ".gif", function () {
-//build pause/play logic for gifs
     var state = $(this).attr("data-state");
     console.log(state);
 
@@ -74,3 +91,9 @@ $(document).on("click", ".gif", function () {
       }
     
 });
+
+//add this to portfolio
+
+//write readme
+
+//make "add to favorites" button wich puts selected gif into a favorites div
