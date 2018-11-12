@@ -7,7 +7,7 @@ $(document).ready(function () {
 
     for (let i = 0; i < buttons.length; i++) {
         var newButton = $("<button>");
-        newButton.addClass("gifButton");
+        newButton.addClass("gifButton btn btn-secondary");
         newButton.attr("type", "button");
         newButton.attr("value", buttons[i])
         newButton.text(buttons[i]);
@@ -22,7 +22,7 @@ $(document).ready(function () {
         } else {
             var button = $("<button>");
             var buttonName = $("#addNew").val();
-            button.addClass("gifButton");
+            button.addClass("gifButton btn btn-secondary");
             button.attr("type", "button");
             button.attr("value", buttonName);
             button.text(buttonName);
@@ -91,9 +91,3 @@ $(document).on("click", ".gif", function () {
       }
     
 });
-
-//add this to portfolio
-
-//write readme
-
-//make "add to favorites" button wich puts selected gif into a favorites div

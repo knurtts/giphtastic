@@ -1,21 +1,13 @@
-header {
-    background: black;
-    color: white;
+body {
+    background: #015aa3;
+}
+
+#titleCard {
     text-align: center;
 }
 
-body {
-    background: #3d3d3d;
-}
-
-#buttons{
-    background: #790097;
-    min-height: 1px;
-}
-
-#gif-space {
-    background: #1d006b;
-    color: #E2FF94;
+.container {
+    align-content: center;
 }
 
 form {
