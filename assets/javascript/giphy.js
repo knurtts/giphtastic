@@ -36,7 +36,7 @@ $(document).ready(function () {
 
 $(document).on("click", ".gifButton", function () {
     var searchTerm = $(this).val();
-    var url = "https://api.giphy.com/v1/gifs/search?q=" + searchTerm + "&api_key=OBz62G0QMIkfMedRwBTJ62a7gIqb8Tsm&limit=4&rating=pg-13";
+    var url = "https://api.giphy.com/v1/gifs/search?q=" + searchTerm + "&api_key=OBz62G0QMIkfMedRwBTJ62a7gIqb8Tsm&limit=4&rating=pg";
     console.log(searchTerm);
 
     $.ajax({
