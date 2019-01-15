@@ -37,13 +37,13 @@ $(document).ready(function () {
 $(document).on("click", ".gifButton", function () {
     var searchTerm = $(this).val();
     var url = "https://api.giphy.com/v1/gifs/search?q=" + searchTerm + "&api_key=OBz62G0QMIkfMedRwBTJ62a7gIqb8Tsm&limit=4&rating=pg";
-    console.log(searchTerm);
+    // console.log(searchTerm);
 
     $.ajax({
         url: url,
         method: "GET",
     }).done(function (result) {
-        console.log(result);
+        // console.log(result);
 
         cardGroup = $("<div>");
         cardGroup.addClass("card-group");
@@ -80,7 +80,7 @@ $(document).on("click", ".gifButton", function () {
 
 $(document).on("click", ".gif", function () {
     var state = $(this).attr("data-state");
-    console.log(state);
+    // console.log(state);
 
     if (state == "still") {
         $(this).attr("src", $(this).attr("data-animate"));
